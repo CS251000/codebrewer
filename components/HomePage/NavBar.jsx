@@ -72,6 +72,16 @@ export default function NavBar() {
                   </NavigationMenuLink>
                 
               </NavigationMenuItem>
+              <NavigationMenuItem>
+                
+                  <NavigationMenuLink href="/discussion"
+                    className={
+                      navigationMenuTriggerStyle() + " text-gray-100 text-xl"
+                    }
+                  >
+                    Discussion
+                  </NavigationMenuLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </div>
