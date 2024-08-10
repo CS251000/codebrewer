@@ -13,7 +13,7 @@ export default function CodeCompiler() {
 
     const handleRun = async () => {
         try {
-            const response = await fetch('http://localhost:4000/run', {
+            const response = await fetch('https://codearena-backend.onrender.com/run', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function CodeCompiler() {
     const handleAnalyze = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:4000/analyze', {
+            const response = await fetch('https://codearena-backend.onrender.com/analyze', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
