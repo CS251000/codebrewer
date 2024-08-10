@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
 
 export default function HeroSection() {
   return (
     <div className="bg-gray-900 text-gray-100">
-      <NavBar/>
+      <NavBar />
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
@@ -21,7 +21,7 @@ export default function HeroSection() {
           />
         </div>
 
-        <div className="mx-auto max-w-2xl py-20 ">
+        <div className="mx-auto max-w-2xl py-20">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-indigo-400 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
               All in one coding platform.
@@ -33,7 +33,7 @@ export default function HeroSection() {
               Code, Compete, Conquer
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-400">
-              Elevate your coding skills with our platform. Participate in real-time coding contests, solve challenging problems, and collaborate with a community of developers. Whether you're preparing for interviews or honing your skills, our platform is designed to help you excel.
+              Elevate your coding skills with our platform. Participate in real-time coding contests, solve challenging problems, and collaborate with a community of developers. Whether you&apos;re preparing for interviews or honing your skills, our platform is designed to help you excel.
             </p>
 
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -58,5 +58,5 @@ export default function HeroSection() {
         </div>
       </div>
     </div>
-  )
+  );
 }
