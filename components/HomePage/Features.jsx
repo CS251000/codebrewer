@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon ,AcademicCapIcon} from '@heroicons/react/24/outline'
 
 const features = [
   {
@@ -22,10 +22,10 @@ const features = [
     icon: ArrowPathIcon,
   },
   {
-    name: 'Advanced Problem Analysis',
+    name: 'Multiple Platforms',
     description:
-      'Analyze your performance with detailed problem breakdowns, including time complexity, space complexity, and optimal solutions.',
-    icon: FingerPrintIcon,
+      'Practice any language on our Playground or Tackle challenges in our Battleground',
+    icon: AcademicCapIcon,
   },
 ]
 

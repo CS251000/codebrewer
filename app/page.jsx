@@ -7,7 +7,7 @@ const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"]
 
 import React from 'react'
 
-export default function page() {
+export default function Page() {
   return (
     <div>
         <>

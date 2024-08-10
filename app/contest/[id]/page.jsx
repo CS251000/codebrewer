@@ -7,7 +7,7 @@ import ContestProblems from "@/components/Contest/ContestProblems";
 import Leaderboard from "@/components/Contest/Leaderboard";
 import NavBar from "@/components/HomePage/NavBar"
 import { SignedIn,SignedOut,SignInButton } from "@clerk/nextjs";
-export default function page() {
+export default function Page() {
   const {id}= useParams();
   const contest = {
     title: `CodeArena Weekly Contest ${id}`,

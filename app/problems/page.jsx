@@ -3,7 +3,7 @@ import NavBar from "@/components/HomePage/NavBar"
 import ProblemsPage from "@/components/Problems/ProblemsHome"
 
 
-export default function page() {
+export default function Page() {
     
   return (
     <div className="bg-gray-900 text-gray-100">

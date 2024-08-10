@@ -4,7 +4,7 @@ import ProblemsPage from "@/components/Problems/ProblemsHome"
 import { useParams } from "next/navigation"
 
 
-export default function page() {
+export default function Page() {
   const {name} = useParams();
     
   return (
