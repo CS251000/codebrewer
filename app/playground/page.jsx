@@ -10,9 +10,11 @@ export default function Playground() {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Online Compiler</h1>
-      <div data-pym-src="https://www.jdoodle.com/embed/v1/17be7ed9f46fc2da"></div>
-    </div>
+    <>
+  
+        <div data-pym-src="https://www.jdoodle.com/embed/v1/1e9cc8d7ad73a464"></div>
+        <script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript"> </script></>
+    
+    
   );
 }
