@@ -51,7 +51,7 @@ export default function ProblemAdd() {
         constraints: '',
         testCases: '',
         tags: '',
-        timestamp:Timestamp.now(),
+        timestamp: Timestamp.now(),
       });
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -64,7 +64,7 @@ export default function ProblemAdd() {
         <h1 className="text-center text-2xl font-bold text-indigo-300 sm:text-3xl">Add a Problem</h1>
 
         <p className="mx-auto mt-2 max-w-md text-center text-gray-300">
-          Add the problem's Name, a brief description, test cases &#40;preferably edge cases too&#41;, along with Constraints and topic tags.
+          Add the problem&apos;s Name, a brief description, test cases &#40;preferably edge cases too&#41;, along with Constraints and topic tags.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4 rounded-lg p-4 shadow-sm sm:p-6 lg:p-8">
@@ -128,7 +128,7 @@ export default function ProblemAdd() {
               value={formData.testCases}
               onChange={handleChange}
               className="w-full rounded-lg border-gray-200 p-3 text-sm shadow-sm text-black"
-              placeholder="Test Cases (e.g., input: [1,2], output: 3)"
+              placeholder="Test Cases (e.g., input: &#91;1,2&#93;, output: 3)"
               rows="4"
               
             />
