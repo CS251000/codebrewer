@@ -1,0 +1,138 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+  }
+  
+  /* Main Container */
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden; /* Ensures no overflow */
+    position: relative; /* For positioning popup */
+  }
+  
+  /* Header */
+  .App h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Monaco Editor Styles */
+  .monaco-editor-container {
+    width: 100%;
+    border-radius: 12px;
+    background-color: #1e1e1e; /* Dark theme for Monaco Editor */
+    border: 1px solid #ddd;
+  }
+  
+  /* Editor Container */
+  .editor-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Buttons */
+  .button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+  }
+  
+  /* Result and Error Boxes */
+  .result-box {
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    margin-top: 20px; /* Ensure spacing from other elements */
+    background-color: #e8f5e9; /* Green background for results */
+    border: 1px solid #4caf50; /* Green border for results */
+  }
+  
+  .result-box h2 {
+    color: #388e3c;
+  }
+  
+  /* Popup Styles */
+  .popup {
+    position: fixed;
+    top: 20%;
+    right: 20px;
+    width: 400px;
+    height: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it's on top */
+    overflow-y: auto; /* Allow scrolling if content is too large */
+  }
+  
+  .popup.open {
+    display: block; /* Show when open */
+  }
+  
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  .popup-close {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #f44336;
+  }
+  
+  .popup-content {
+    margin-top: 10px;
+  }
+  
+  /* Error Box */
+  .error-box {
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffebee; /* Red background for errors */
+    border: 1px solid #f44336; /* Red border for errors */
+    margin-top: 20px;
+  }
+  
+  .error-box h2 {
+    color: #d32f2f;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .App {
+        margin: 10px;
+        padding: 10px;
+    }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+  }
+  
