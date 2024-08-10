@@ -89,11 +89,11 @@ const ProblemsPage = () => {
             {filteredProblems.map((problem) => (
               <tr key={problem.id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-200 tracking-wide">
-                  <Link href={`/problems/${problem.name}`}>
+                  <Link href={`/problems/${problem.id}`}>
                     <span
                       className="block text-center md:whitespace-normal lg:text-left"
                       style={{ maxWidth: "300px" }}
-                      title={problem.name} // Tooltip on hover
+                      title={problem.name} 
                     >
                       {problem.name.length > 10 ? (
                         <>
@@ -101,7 +101,7 @@ const ProblemsPage = () => {
                             {problem.name.slice(0, 10)}...
                           </span>
                           <span className="hidden md:block">
-                            {problem.name.slice(0, 25)}...
+                            {problem.name}
                           </span>
                         </>
                       ) : (
