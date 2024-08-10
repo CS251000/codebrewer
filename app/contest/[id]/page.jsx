@@ -1,8 +1,19 @@
-"use client"
 
+"use client";
+import { useParams } from "next/navigation";
+import ContestHeader from "@/components/Contest/ContestHeader";
+import Timer from "@/components/Contest/Timer";
+import ContestProblems from "@/components/Contest/ContestProblems";
+import Leaderboard from "@/components/Contest/Leaderboard";
 import NavBar from "@/components/HomePage/NavBar"
-
+import { SignedIn,SignedOut,SignInButton } from "@clerk/nextjs";
 export default function page() {
+  const {id}= useParams();
+  const contest = {
+    title: `CodeArena Weekly Contest ${id}`,
+    date: 'Aug 10, 2024',
+    endTime: '2024-08-10T15:00:00', // End time of the contest
+  };
   return (
     <div className="bg-gray-900 text-gray-100">
       <NavBar/>
@@ -21,13 +32,16 @@ export default function page() {
           />
         </div>
 
-        <div className="mx-auto max-w-2xl py-20 text-center ">
-
-            <h1 className="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">
-              PlayGround
-            </h1>
-           
-          </div>
+        <div className=" text-gray-100 min-h-screen p-6">
+          <SignedIn>
+      <div className="max-w-5xl mx-auto">
+        <ContestHeader title={contest.title} date={contest.date} />
+        <Timer endTime={contest.endTime} />
+        <ContestProblems />
+        <Leaderboard />
+      </div></SignedIn>
+      {/* <SignedOut><SignInButton/></SignedOut> */}
+    </div>
         </div>
 
         <div
@@ -46,3 +60,6 @@ export default function page() {
 
   )
 }
+
+
+

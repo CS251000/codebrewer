@@ -57,11 +57,11 @@ export default function MobileNav() {
                 >
                   Problems
                 </button></Link>
-                <Link href={'/battleground'}>
+                <Link href={'/contest'}>
                 <button
                   className="block w-full text-left -mx-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-800"
                 >
-                  Battle Ground
+                  Contest
                 </button></Link>
                 <Link href={'/discussion'}>
                 <button

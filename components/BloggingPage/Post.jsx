@@ -28,7 +28,7 @@ export const PostComponent = ({ user, date, language, content, code }) => (
     <div className="text-base sm:text-lg mt-5 leading-6 text-gray-200">
       {content}
     </div>
-    <div className="text-sm sm:text-base mt-5 w-full sm:w-11/12 text-blue-900 border py-2 px-3 rounded-2xl whitespace-pre-wrap">
+    <div className="text-sm sm:text-base mt-5 w-full sm:w-11/12 text-blue-100 border py-2 px-3 rounded-2xl whitespace-pre-wrap">
       {code}
     </div>
     <div className="flex justify-between mt-6">

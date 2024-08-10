@@ -1,10 +1,12 @@
 "use client"
-
-import BlogPage from "@/components/BloggingPage/BlogPage"
-
 import NavBar from "@/components/HomePage/NavBar"
+import ProblemsPage from "@/components/Problems/ProblemsHome"
+import { useParams } from "next/navigation"
+
 
 export default function page() {
+  const {name} = useParams();
+    
   return (
     <div className="bg-gray-900 text-gray-100">
       <NavBar/>
@@ -22,8 +24,8 @@ export default function page() {
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-          <div className="text-4xl font-bold tracking-tight text-gray-100   sm:text-6xl">
-              <BlogPage/>
+          <div className="text-4xl font-bold tracking-tight text-gray-900   sm:text-6xl">
+              {name}
             </div>
            
           </div>

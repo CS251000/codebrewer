@@ -63,12 +63,12 @@ export default function NavBar() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 
-                  <NavigationMenuLink href="/battleground"
+                  <NavigationMenuLink href="/contest"
                     className={
                       navigationMenuTriggerStyle() + " text-gray-100 text-xl"
                     }
                   >
-                    Battle Ground
+                    Contest
                   </NavigationMenuLink>
                 
               </NavigationMenuItem>
