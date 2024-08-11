@@ -1,23 +1,55 @@
-
 "use client";
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import ContestHeader from "@/components/Contest/ContestHeader";
 import Timer from "@/components/Contest/Timer";
 import ContestProblems from "@/components/Contest/ContestProblems";
 import Leaderboard from "@/components/Contest/Leaderboard";
-import NavBar from "@/components/HomePage/NavBar"
-import { SignedIn,SignedOut,SignInButton } from "@clerk/nextjs";
+import NavBar from "@/components/HomePage/NavBar";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import {  doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+
 export default function Page() {
-  const {id}= useParams();
-  const contest = {
-    title: `CodeArena Weekly Contest ${id}`,
-    date: 'Aug 10, 2024',
-    endTime: '2024-08-10T15:00:00', // End time of the contest
-  };
+  const { id } = useParams(); // Get the contest ID from the URL
+  const [contest, setContest] = useState(null);
+  const [problems, setProblems] = useState([]);
+  
+  useEffect(() => {
+    const fetchContestAndProblems = async () => {
+      try {
+        // Fetch contest document
+        const contestRef = doc(db, 'contests', id);
+        const contestSnap = await getDoc(contestRef);
+        const contestData = contestSnap.data();
+        
+        if (contestData) {
+          setContest({
+            title: contestData.title,
+            date: contestData.date.toDate().toDateString(), // Adjust as needed
+            endTime: contestData.endTime, // Ensure this is in the correct format
+          });
+          
+          // Fetch problem documents based on questionids
+          const problemsQuery = query(collection(db, 'problems'), where('__name__', 'in', contestData.questionids));
+          const problemsSnap = await getDocs(problemsQuery);
+          const problemsData = problemsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          
+          setProblems(problemsData);
+        }
+      } catch (error) {
+        console.error("Error fetching contest or problems: ", error);
+      }
+    };
+    
+    fetchContestAndProblems();
+  }, [id]);
+  
+  if (!contest) return <p>Loading...</p>;
+  
   return (
     <div className="bg-gray-900 text-gray-100">
-      <NavBar/>
-
+      <NavBar />
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"
@@ -32,16 +64,18 @@ export default function Page() {
           />
         </div>
 
-        <div className=" text-gray-100 min-h-screen p-6">
+        <div className="text-gray-100 min-h-screen p-6">
           <SignedIn>
-      <div className="max-w-5xl mx-auto">
-        <ContestHeader title={contest.title} date={contest.date} />
-        <Timer endTime={contest.endTime} />
-        <ContestProblems />
-        <Leaderboard />
-      </div></SignedIn>
-      {/* <SignedOut><SignInButton/></SignedOut> */}
-    </div>
+            <div className="max-w-5xl mx-auto">
+              <ContestHeader title={contest.title} date={contest.date} />
+              <Timer endTime={contest.endTime} />
+              <ContestProblems problems={problems} /> {/* Pass the problems to the component */}
+              <Leaderboard />
+            </div>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
         </div>
 
         <div
@@ -57,9 +91,6 @@ export default function Page() {
           />
         </div>
       </div>
-
-  )
+    </div>
+  );
 }
-
-
-
