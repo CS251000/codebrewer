@@ -5,7 +5,7 @@ import { db } from "@/firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
 
-const ContestProblems = ({id}) => {
+const ContestProblems = ({ id }) => {
   const [problems, setProblems] = useState([]);
 
   useEffect(() => {
@@ -31,24 +31,24 @@ const ContestProblems = ({id}) => {
       <h2 className="text-2xl font-semibold">Problems</h2>
       <ul className="mt-4">
         {problems.map((problem) => (
-          <Link href={`/problems/${problem.id}`}>
-          <li
-            key={problem.id}
-            className="mt-4 border border-gray-300 p-4 rounded-md flex justify-between"
-          >
-            <span>{problem.name}</span>
-            <span
-              className={`text-${
-                problem.difficulty === "Hard"
-                  ? "red"
-                  : problem.difficulty === "Medium"
-                  ? "yellow"
-                  : "green"
-              }-500`}
+          <Link href={`/problems/${problem.id}`} key={problem.id}>
+            <li
+              className="mt-4 border border-gray-300 p-4 rounded-md flex justify-between"
             >
-              {problem.difficulty}
-            </span>
-          </li></Link>
+              <span>{problem.name}</span>
+              <span
+                className={`text-${
+                  problem.difficulty === "Hard"
+                    ? "red"
+                    : problem.difficulty === "Medium"
+                    ? "yellow"
+                    : "green"
+                }-500`}
+              >
+                {problem.difficulty}
+              </span>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>
