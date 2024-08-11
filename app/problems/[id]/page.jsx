@@ -77,7 +77,7 @@ export default function Page() {
           />
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 p-6">
+        <div className="flex flex-col lg:flex-row gap-6 p-6 max-h-fit  ">
           {/* Container for Problem Details and Code Editor */}
           <div className="flex flex-1">
             {/* Problem Details Section */}
@@ -88,11 +88,7 @@ export default function Page() {
               <h1 className={`text-2xl font-semibold mb-4 text-gray-200`}>
                 {problem.name}
               </h1>
-              <p className="text-md mb-2">
-                <strong>Difficulty:</strong> <span className={`${difficultyColor}`}>{problem.difficulty}</span>
-              </p>
-              <p className="mb-4">{problem.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 my-4">
                 {problem.tags.map((tag, index) => (
                   <span
                     key={index}
@@ -102,6 +98,11 @@ export default function Page() {
                   </span>
                 ))}
               </div>
+              <p className="text-md mb-2">
+                <strong>Difficulty:</strong> <span className={`${difficultyColor}`}>{problem.difficulty}</span>
+              </p>
+              <p className="mb-4 text-gray-100">{problem.problemStatement}</p>
+              
 
               {/* Constraints */}
               <div className="mb-4">
@@ -118,6 +119,7 @@ export default function Page() {
                   {problem.testCases}
                 </p>
               </div>
+              
 
               {/* Resize Handle */}
               <div
@@ -142,21 +144,21 @@ export default function Page() {
 
             {/* Code Editor Section */}
             <div className="flex-1 flex flex-col ml-4">
-              <div className="max-h-[400px] rounded-lg shadow-md">
+              <div className=" rounded-lg shadow-md">
                 <CodeCompiler />
               </div>
-              <Button variant="primary" className="mt-4 self-end bg-white/10" onClick={submitCode}>
+              {/* <Button variant="primary" className="mt-4 self-end bg-white/10" onClick={submitCode}>
                 Submit
-              </Button>
+              </Button> */}
 
               {/* Output Display */}
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <h2 className="text-lg font-semibold mb-2 text-black">Output:</h2>
                 <pre className="whitespace-pre-line text-gray-200">{output}</pre>
                 <p className={`mt-2 ${match ? 'text-green-500' : 'text-red-500'}`}>
                   {match ? 'Output matches expected output' : 'Output does not match expected output'}
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

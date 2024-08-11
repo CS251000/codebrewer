@@ -71,7 +71,13 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      textShadow: {
+        default: '0 0 2px rgba(0, 0, 0, 0.9)',
+        md: '0 0 4px rgba(0, 0, 0, 0.9)',
+        lg: '0 0 6px ',
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),('tailwindcss-textshadow'),],
+  
 }

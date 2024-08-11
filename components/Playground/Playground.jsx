@@ -4,7 +4,15 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export default function CodeCompiler() {
-  const [code, setCode] = useState("");
+  const defcode= `
+#include<iostream>
+using namespace std;
+int main(){
+
+  return 0;
+}
+  `
+  const [code, setCode] = useState(defcode);
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
   const [analysis, setAnalysis] = useState("");
@@ -77,7 +85,7 @@ export default function CodeCompiler() {
   return (
     <div className="relative mt-4 bg-gray-900 rounded-lg text-gray-100 min-h-screen p-6">
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="col-span-2 p-4 rounded-lg shadow-lg">
+        <div className="col-span-2 p-4 rounded-lg shadow-lg ">
             <Editor
                 className="monaco-editor-container"
                 height="500px"

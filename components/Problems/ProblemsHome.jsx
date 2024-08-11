@@ -40,36 +40,37 @@ const ProblemsPage = () => {
 
   const filteredProblems = problems.filter((problem) => {
     const lowercasedQuery = searchQuery.toLowerCase();
-    return (
-      problem.name.toLowerCase().includes(lowercasedQuery) ||
-      problem.difficulty.toLowerCase().includes(lowercasedQuery) ||
-      (problem.tags && problem.tags.join(" ").toLowerCase().includes(lowercasedQuery))
-    );
+    return problem.name.toLowerCase().includes(lowercasedQuery);
   });
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl my-8 text-center text-teal-300 font-medium">
-        Problems List
+      <h1 className="text-3xl my-8 text-center text-teal-300 font-lg text-shadow-lg">
+        CODING ARENA
       </h1>
-      {/* Search Input */}
-      {/* <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search by name, difficulty, or tags..."
-          className="w-full p-2 border rounded-lg"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div> */}
+      
+      
+
       {/* Add Question Button */}
       <div className="flex justify-end mb-4">
+        
         <Link href={"/problems/add"}>
           <button className="bg-indigo-600 text-white px-3 py-1.5 text-sm rounded-md hover:bg-indigo-500 transition-all tracking-wide">
             Add Question
           </button>
         </Link>
       </div>
+      {/* Search Input */}
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Search by name..."
+          className=" text-lg w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-500 text-black"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+      
       <div className="bg-white/20 shadow rounded-lg overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
@@ -124,6 +125,9 @@ const ProblemsPage = () => {
             ))}
           </tbody>
         </table>
+        {filteredProblems.length === 0 && (
+          <p className="text-center text-gray-500 py-4">No problems found.</p>
+        )}
       </div>
     </div>
   );

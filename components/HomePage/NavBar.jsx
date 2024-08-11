@@ -57,7 +57,7 @@ export default function NavBar() {
                       navigationMenuTriggerStyle() + " text-gray-100 text-xl"
                     }
                   >
-                    Problems
+                    Arena
                   </NavigationMenuLink>
                 
               </NavigationMenuItem>
@@ -68,7 +68,7 @@ export default function NavBar() {
                       navigationMenuTriggerStyle() + " text-gray-100 text-xl"
                     }
                   >
-                    Contest
+                    BattleGround
                   </NavigationMenuLink>
                 
               </NavigationMenuItem>

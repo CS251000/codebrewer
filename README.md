@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# CodeArena
 
-First, run the development server:
+CodeArena is a coding platform that offers a platform for users to practice coding problems, submit solutions, and receive instant AI feedback. It provides a user-friendly interface with a Monaco editor supporting C++. The platform includes problem-solving features, code execution, output display, and analysis of code complexity.
+
+
+
+
+
+## Deployment
+
+To deploy this project run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm install
+  npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Explore CodeArena through the following links:
 
-## Learn More
+- **Frontend**: [https://codearena-five.vercel.app](https://codearena-five.vercel.app)
+- **Backend**: [https://codearena-backend.onrender.com](https://codearena-backend.onrender.com)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Frontend
+- **React**: JavaScript library for building user interfaces.
+- **Monaco Editor**: A powerful code editor for writing and editing code.
+- **Tailwind CSS**: Utility-first CSS framework for styling and designing the user interface.
 
-## Deploy on Vercel
+### Backend
+- **Node.js**: JavaScript runtime for building scalable network applications.
+- **Express**: Web framework for Node.js to handle HTTP requests and responses.
+- **GCC**: Compiler for C++ code execution.
+- **Google Generative AI**: Model for analyzing code complexity and performance.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Deployment
+- **Vercel**: Platform for deploying the frontend.
+- **Render**: Platform for deploying the backend.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Other Tools
+- **Git**: Version control system for tracking changes and collaboration.
+- **GitHub**: Hosting service for version control and collaboration.
+## Acknowledgements
+
+- **Monaco Editor**: For the powerful code editing functionality.
+- **GCC**: For compiling C++ code.
+- **Gemini 1.5**: For analyzing code complexity and performance.
+
