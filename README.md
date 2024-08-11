@@ -25,6 +25,8 @@ Explore CodeArena through the following links:
 - **Backend**: [https://codearena-backend.onrender.com](https://codearena-backend.onrender.com)
 
 
+![Screenshot 1]([images/screenshot1.png](https://freeimage.host/i/d02sOZb))
+
 ## Tech Stack
 
 ### Frontend
