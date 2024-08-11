@@ -2,17 +2,20 @@
 
 import NavBar from "@/components/HomePage/NavBar";
 import React, { useState, useEffect } from 'react';
-import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
-import { dracula } from '@uiw/codemirror-theme-dracula';
 import { Button } from "@/components/ui/button";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { useParams } from "next/navigation";
+import axios from 'axios';
+import CodeCompiler from "@/components/Playground/Playground";
 
 export default function Page() {
   const [problem, setProblem] = useState(null);
-  const { id } = useParams();  // Assuming 'id' is the name of your dynamic route parameter
+  const [code, setCode] = useState('// Start coding here...');
+  const [output, setOutput] = useState('');
+  const [match, setMatch] = useState(false);
+  const [problemWidth, setProblemWidth] = useState(600); 
+  const { id } = useParams(); 
 
   useEffect(() => {
     async function fetchProblem() {
@@ -26,6 +29,24 @@ export default function Page() {
     }
     fetchProblem();
   }, [id]);
+
+  const submitCode = async () => {
+    if (problem) {
+      try {
+        const response = await axios.post('/run', {
+          code,
+          expectedOutput: problem.testCases,
+        });
+        
+        setOutput(response.data.output);
+        setMatch(response.data.match);
+      } catch (error) {
+        console.error('Error executing code:', error);
+        setOutput('Error executing code');
+        setMatch(false);
+      }
+    }
+  };
 
   if (!problem) {
     return <div className="text-center text-red-500">Problem not found!</div>;
@@ -57,56 +78,86 @@ export default function Page() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 p-6">
-          {/* Problem Details Section */}
-          <div className="lg:w-1/2 bg-white/20 p-6 rounded-lg shadow-md text-gray-800">
-            <h1 className={`text-2xl font-semibold mb-4 text-gray-200`}>
-              {problem.name}
-            </h1>
-            <p className="text-md mb-2">
-              <strong>Difficulty:</strong> <span className={`${difficultyColor}`}>{problem.difficulty}</span>
-            </p>
-            <p className="mb-4">{problem.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {problem.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="bg-gray-300 text-sm px-3 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Constraints */}
-            <div className="mb-4">
-              <h2 className="text-lg mb-2 text-black">Constraints:</h2>
-              <p className="whitespace-pre-line text-gray-200">
-                {problem.constraints}
+          {/* Container for Problem Details and Code Editor */}
+          <div className="flex flex-1">
+            {/* Problem Details Section */}
+            <div
+              className="relative bg-white/20 p-6 rounded-lg shadow-md text-gray-800 resize-x overflow-auto"
+              style={{ width: `${problemWidth}px` }}
+            >
+              <h1 className={`text-2xl font-semibold mb-4 text-gray-200`}>
+                {problem.name}
+              </h1>
+              <p className="text-md mb-2">
+                <strong>Difficulty:</strong> <span className={`${difficultyColor}`}>{problem.difficulty}</span>
               </p>
+              <p className="mb-4">{problem.description}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {problem.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-gray-300 text-sm px-3 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Constraints */}
+              <div className="mb-4">
+                <h2 className="text-lg mb-2 text-black">Constraints:</h2>
+                <p className="whitespace-pre-line text-gray-200">
+                  {problem.constraints}
+                </p>
+              </div>
+
+              {/* Test Cases */}
+              <div>
+                <h2 className="text-lg font-semibold mb-2 text-black">Test Cases:</h2>
+                <p className="whitespace-pre-line text-gray-200">
+                  {problem.testCases}
+                </p>
+              </div>
+
+              {/* Resize Handle */}
+              <div
+                className="absolute right-0 top-0 h-full w-2 cursor-col-resize bg-gray-300"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  const startX = e.clientX;
+                  const startWidth = problemWidth;
+                  const onMouseMove = (event) => {
+                    const newWidth = startWidth + (event.clientX - startX);
+                    setProblemWidth(newWidth > 200 ? newWidth : 200); // Minimum width of 200px
+                  };
+                  const onMouseUp = () => {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                  };
+                  document.addEventListener('mousemove', onMouseMove);
+                  document.addEventListener('mouseup', onMouseUp);
+                }}
+              />
             </div>
 
-            {/* Test Cases */}
-            <div>
-              <h2 className="text-lg font-semibold mb-2 text-black">Test Cases:</h2>
-              <p className="whitespace-pre-line text-gray-200">
-                {problem.testCases}
-              </p>
-            </div>
-          </div>
+            {/* Code Editor Section */}
+            <div className="flex-1 flex flex-col ml-4">
+              <div className="max-h-[400px] rounded-lg shadow-md">
+                <CodeCompiler />
+              </div>
+              <Button variant="primary" className="mt-4 self-end bg-white/10" onClick={submitCode}>
+                Submit
+              </Button>
 
-          {/* Code Editor Section */}
-          <div className="lg:w-1/2 flex flex-col">
-            <CodeMirror
-              value="// Start coding here..."
-              height="400px"
-              theme={dracula}
-              extensions={[javascript()]}
-              onChange={(value) => setCode(value)}
-              className="rounded-lg shadow-md"
-            />
-            <Button variant="primary" className="mt-4 self-end bg-white/10">
-              Submit
-            </Button>
+              {/* Output Display */}
+              <div className="mt-6">
+                <h2 className="text-lg font-semibold mb-2 text-black">Output:</h2>
+                <pre className="whitespace-pre-line text-gray-200">{output}</pre>
+                <p className={`mt-2 ${match ? 'text-green-500' : 'text-red-500'}`}>
+                  {match ? 'Output matches expected output' : 'Output does not match expected output'}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
